@@ -1,0 +1,14 @@
+# Build/Test
+obj
+bin
+*.nupkg
+
+# Visual Studio files
+*.user
+*.suo
+*.pdb
+*.bak
+
+# Visual Studio folders
+.vs
+packages
