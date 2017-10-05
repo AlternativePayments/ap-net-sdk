@@ -15,6 +15,17 @@ namespace AlternativePayments
             return GetResource($"{Urls.Transactions}/{transactionId}");
         }
 
+        public TransactionList GetAll()
+        {
+            return GetAll(null);
+        }
+
+        public TransactionList GetAll(CommonFilter filter)
+        {
+            var queryString = filter == null ? string.Empty : $"?{filter.GetQueryString()}";
+            return GetResource<TransactionList>($"{Urls.Transactions}{queryString}");
+        }
+
         public Transaction Create(Transaction transaction)
         {
             return CreateResource(Urls.Transactions, transaction);

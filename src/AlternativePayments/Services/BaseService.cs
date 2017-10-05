@@ -22,6 +22,12 @@ namespace AlternativePayments
             return JsonConvert.DeserializeObject<T>(result);
         }
 
+        protected U GetResource<U>(string url)
+        {
+            var result = SendGetRequest(url);
+            return JsonConvert.DeserializeObject<U>(result);
+        }
+
         protected T CreateResource(string url, object model)
         {
             var settings = new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore};
