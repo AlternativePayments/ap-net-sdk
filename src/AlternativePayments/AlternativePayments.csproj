@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,12 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternativePaymentsClient.cs" />
+    <Compile Include="Filters\BaseFilter.cs" />
     <Compile Include="Infrastructure\Constants\ReturnReason.cs" />
     <Compile Include="Infrastructure\Constants\Urls.cs" />
     <Compile Include="Infrastructure\Exceptions\AlternativePaymentsException.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Filters\CommonFilter.cs" />
+    <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\PhoneVerification.cs" />
     <Compile Include="Models\Plan.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Models\Refund.cs" />
     <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionList.cs" />
     <Compile Include="Models\Void.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />

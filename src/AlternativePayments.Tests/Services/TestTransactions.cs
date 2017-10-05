@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace AlternativePayments.Tests.Services
 {
@@ -23,6 +25,44 @@ namespace AlternativePayments.Tests.Services
 
             // Assert
             Assert.That(transactionId, Is.EqualTo(transaction.Id));
+        }
+
+        [Test]
+        public void GetAllTransactions()
+        {
+            // Arange           
+
+            // Act
+            var transactionList = _alternativePayments.TransactionService.GetAll();
+
+            // Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void GetTenTransactions()
+        {
+            // Arrange
+            var filter = new CommonFilter().WithLimit(10);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAll(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.LessThanOrEqualTo(10));            
+        }
+
+        [Test]
+        public void GetTransactionsForPeriod()
+        {
+            // Arrange
+            var filter = new CommonFilter().WithStartDate(DateTime.Now.AddYears(-1)).WithEndDate(DateTime.Now);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAll(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
         }
 
         [Test]
