@@ -40,6 +40,12 @@
 
         public PhoneVerification PhoneVerification { get; set; }
 
+        public string CustomDescriptor { get; set; }
+
+        public string CreditorID { get; set; }
+
+        public string CreditorName { get; set; }
+
         public sealed class Builder
         {
             public string CustomerId { get; set; }
@@ -71,6 +77,12 @@
             public RedirectUrls RedirectUrls { get; set; }
 
             public PhoneVerification PhoneVerification { get; set; }
+
+            public string CustomDescriptor { get; set; }
+
+            public string CreditorID { get; set; }
+
+            public string CreditorName { get; set; }
 
             public Builder(string customerId, decimal amount, string currency, string ipAddress)
             {
@@ -156,6 +168,24 @@
                 return this;
             }
 
+            public Builder WithCustomDescriptor(string customDescriptor)
+            {
+                CustomDescriptor = customDescriptor;
+                return this;
+            }
+
+            public Builder WithCreditorID(string creditorID)
+            {
+                CreditorID = creditorID;
+                return this;
+            }
+
+            public Builder WithCreditorName(string creditorName)
+            {
+                CreditorName = creditorName;
+                return this;
+            }
+
             public Transaction Build()
             {
                 return new Transaction(this);
@@ -179,6 +209,9 @@
             MerchantTransactionId = builder.MerchantTransactionId;
             RedirectUrls = builder.RedirectUrls;
             PhoneVerification = builder.PhoneVerification;
+            CustomDescriptor = builder.CustomDescriptor;
+            CreditorID = builder.CreditorID;
+            CreditorName = builder.CreditorName;
         }
     }
 }

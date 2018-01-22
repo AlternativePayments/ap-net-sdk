@@ -122,6 +122,95 @@ namespace AlternativePayments.Tests.Services
         }
 
         [Test]
+        public void CreateSepaTransactionWithPaymentObjectWithMandateIdAndMandateDateOfSignature()
+        {
+            // Arange
+            var payment = new Payment.Builder("SEPA", "John Doe", "89.216.124.9")
+                .WithIban("DEST1000200030004000500")
+                .WithMandateID("1281221")
+                .WithMandateDateOfSignature("2018-01-20")
+                .Build();
+
+            var customer = new Customer.Builder("John", "Doe", "john@doe.com", "DE", "89.216.124.9")
+                .WithAddress("Marko Bode Strasse")
+                .WithCity("Dortmund")
+                .WithZip("A2123")
+                .Build();
+
+            var transaction = new Transaction.Builder(customer, 500, "USD", "89.216.124.9")
+                .WithPayment(payment)
+                .WithMerchantPassThruData("trn0045")
+                .WithDescription("Description")
+                .WithRecurring(true)
+                .Build();
+
+            // Act
+            var result = _alternativePayments.TransactionService.Create(transaction);
+
+            // Assert
+            Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
+        }
+
+        [Test]
+        public void CreateSepaTransactionWithCreditorIdAndCreditorName()
+        {
+            // Arange
+            var payment = new Payment.Builder("SEPA", "John Doe", "89.216.124.9")
+                .WithIban("DEST1000200030004000500")
+                .Build();
+
+            var customer = new Customer.Builder("John", "Doe", "john@doe.com", "DE", "89.216.124.9")
+                .WithAddress("Marko Bode Strasse")
+                .WithCity("Dortmund")
+                .WithZip("A2123")
+                .Build();
+
+            var transaction = new Transaction.Builder(customer, 500, "USD", "89.216.124.9")
+                .WithPayment(payment)
+                .WithMerchantPassThruData("trn0045")
+                .WithDescription("Description")
+                .WithRecurring(false)
+                .WithCreditorID("CH13YYY99887700111")
+                .WithCreditorName("Alternative Payments")
+                .Build();
+
+            // Act
+            var result = _alternativePayments.TransactionService.Create(transaction);
+
+            // Assert
+            Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
+        }
+
+        [Test]
+        public void CreateSepaTransactionWithCustomDescriptor()
+        {
+            // Arange
+            var payment = new Payment.Builder("SEPA", "John Doe", "89.216.124.9")
+                .WithIban("DEST1000200030004000500")
+                .Build();
+
+            var customer = new Customer.Builder("John", "Doe", "john@doe.com", "DE", "89.216.124.9")
+                .WithAddress("Marko Bode Strasse")
+                .WithCity("Dortmund")
+                .WithZip("A2123")
+                .Build();
+
+            var transaction = new Transaction.Builder(customer, 500, "USD", "89.216.124.9")
+                .WithPayment(payment)
+                .WithMerchantPassThruData("trn0045")
+                .WithDescription("Description")
+                .WithRecurring(false)
+                .WithCustomDescriptor("1111.2234.9874 Alternative Payments 1288888 11111.1684231-2")
+                .Build();
+
+            // Act
+            var result = _alternativePayments.TransactionService.Create(transaction);
+
+            // Assert
+            Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
+        }
+
+        [Test]
         public void CreateIdealTransactionWithPaymentObjectAndCustomerObject()
         {
             // Arange
