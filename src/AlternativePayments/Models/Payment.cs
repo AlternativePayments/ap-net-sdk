@@ -1,4 +1,7 @@
-﻿namespace AlternativePayments
+﻿using System;
+using System.Globalization;
+
+namespace AlternativePayments
 {
     public class Payment : BaseModel
     {
@@ -18,6 +21,10 @@
 
         public string DocumentId { get; set; }
 
+        public string MandateID { get; set; }
+
+        public string MandateDateOfSignature { get; set; }
+
         public sealed class Builder
         {
             public string PaymentOption { get; set; }
@@ -33,6 +40,10 @@
             public string DocumentId { get; set; }
 
             public string IpAddress { get; set; }
+
+            public string MandateID { get; set; }
+
+            public string MandateDateOfSignature { get; set; }
 
             public Builder(string paymentOption, string holder, string ipAddress)
             {
@@ -65,6 +76,24 @@
                 return this;
             }
 
+            public Builder WithMandateID(string mandateID)
+            {
+                MandateID = mandateID;
+                return this;
+            }
+
+            public Builder WithMandateDateOfSignature(string mandateDateOfSignature)
+            {
+                MandateDateOfSignature = mandateDateOfSignature;
+                return this;
+            }
+
+            public Builder WithMandateDateOfSignature(DateTime mandateDateOfSignature)
+            {
+                MandateDateOfSignature = mandateDateOfSignature.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                return this;
+            }
+
             public Payment Build()
             {
                 return new Payment(this);
@@ -80,6 +109,8 @@
             BankCode = builder.BankCode;
             DocumentId = builder.DocumentId;
             IpAddress = builder.IpAddress;
+            MandateID = builder.MandateID;
+            MandateDateOfSignature = builder.MandateDateOfSignature;
         }
     }
 }
