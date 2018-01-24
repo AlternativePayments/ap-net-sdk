@@ -1,4 +1,7 @@
-﻿namespace AlternativePayments
+﻿using System;
+using System.Globalization;
+
+namespace AlternativePayments
 {
     public class Payment : BaseModel
     {
@@ -82,6 +85,12 @@
             public Builder WithMandateDateOfSignature(string mandateDateOfSignature)
             {
                 MandateDateOfSignature = mandateDateOfSignature;
+                return this;
+            }
+
+            public Builder WithMandateDateOfSignature(DateTime mandateDateOfSignature)
+            {
+                MandateDateOfSignature = mandateDateOfSignature.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 return this;
             }
 
