@@ -9,5 +9,7 @@
         public string Code { get; set; }
 
         public string Param { get; set; }
+
+        public string TransactionId { get; set; }
     }
 }
