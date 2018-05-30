@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternativePaymentsClient.cs" />
+    <Compile Include="Enums\TransactionStatus.cs" />
     <Compile Include="Filters\BaseFilter.cs" />
+    <Compile Include="Filters\SepaFilter.cs" />
     <Compile Include="Infrastructure\Constants\ReturnReason.cs" />
     <Compile Include="Infrastructure\Constants\Urls.cs" />
     <Compile Include="Infrastructure\Exceptions\AlternativePaymentsException.cs" />
@@ -82,6 +84,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
