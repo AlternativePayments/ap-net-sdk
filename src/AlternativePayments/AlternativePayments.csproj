@@ -82,6 +82,7 @@
     <Compile Include="Services\Transactions\VoidService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AlternativePayments.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
