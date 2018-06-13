@@ -10,6 +10,8 @@
 
         public static string Transactions => "/transactions";
 
+        public static string SepaTransactions => "/sepa/transactions";
+
         public static string Plans => "/plans";
 
         public static string Subscriptions => "/subscriptions";

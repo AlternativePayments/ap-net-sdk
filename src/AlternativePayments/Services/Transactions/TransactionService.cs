@@ -26,6 +26,17 @@ namespace AlternativePayments
             return GetResource<TransactionList>($"{Urls.Transactions}{queryString}");
         }
 
+        public TransactionList GetAllSepa()
+        {
+            return GetAllSepa(null);
+        }
+
+        public TransactionList GetAllSepa(SepaFilter filter)
+        {
+            var queryString = filter == null ? string.Empty : $"?{filter.GetQueryString()}";
+            return GetResource<TransactionList>($"{Urls.SepaTransactions}{queryString}");
+        }
+
         public Transaction Create(Transaction transaction)
         {
             return CreateResource(Urls.Transactions, transaction);

@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace AlternativePayments.Tests.Services
 {
+    [TestFixture]
     public class TestTransactions
     {
         private AlternativePaymentsClient _alternativePayments = null;
@@ -60,6 +61,70 @@ namespace AlternativePayments.Tests.Services
 
             //Act
             var transactionList = _alternativePayments.TransactionService.GetAll(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void GetAllSepaTransactions()
+        {
+            // Arange           
+
+            // Act
+            var transactionList = _alternativePayments.TransactionService.GetAllSepa();
+
+            // Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void GetTenSepaTransactions()
+        {
+            // Arrange
+            var filter = new SepaFilter().WithLimit(10);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAllSepa(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.LessThanOrEqualTo(10));
+        }
+
+        [Test]
+        public void GetFundedSepaTransactions()
+        {
+            // Arrange
+            var filter = new SepaFilter().WithTransactionStatus(TransactionStatus.Funded);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAllSepa(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void GetSepaTransactionsForCreatedTime()
+        {
+            // Arrange
+            var filter = new SepaFilter().WithCreatedFrom(DateTime.Now.AddYears(-1)).WithCreatedTo(DateTime.Now);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAllSepa(filter);
+
+            //Assert
+            Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void GetSepaTransactionsForUpdatedTime()
+        {
+            // Arrange
+            var filter = new SepaFilter().WithUpdatedFrom(DateTime.Now.AddYears(-1)).WithUpdatedTo(DateTime.Now);
+
+            //Act
+            var transactionList = _alternativePayments.TransactionService.GetAllSepa(filter);
 
             //Assert
             Assert.That(transactionList.Transactions.Count(), Is.GreaterThan(0));

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AlternativePayments</id>
+    <version>1.0.4</version>
+    <title>Alternative Payments .Net SDK</title>
+    <authors>UAB Alternative Payments</authors>
+    <owners>UAB Alternative Payments</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://www.alternativepayments.com/</projectUrl>
+    <description>UAB Alternative Payments .Net SDK</description>
+    <releaseNotes>API GET method for SCT and SDD transactions</releaseNotes>
+    <copyright>© 1999-2018 UAB Alternative Payments. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\AlternativePayments.dll" target="lib\net45\AlternativePayments.dll" />
+  </files>
+</package>
