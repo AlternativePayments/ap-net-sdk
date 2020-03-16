@@ -7,12 +7,15 @@ namespace AlternativePayments.Tests.Services
     [TestFixture]
     public class TestTransactions
     {
+        private const string ApiKey = "-- please provide valid test API key --";
+        private const string ApiBaseUrl = "-- please provide valid test API base URL -";
+
         private AlternativePaymentsClient _alternativePayments = null;
 
         [OneTimeSetUp]
         public void Init()
         {
-            _alternativePayments = new AlternativePaymentsClient("sk_test_mF2qf4lBXZodrwVrEIBxTpXi0mxZvE2xJ0pOwct2");
+            _alternativePayments = new AlternativePaymentsClient(ApiKey, ApiBaseUrl);
         }
 
         [Test]
@@ -273,6 +276,40 @@ namespace AlternativePayments.Tests.Services
 
             // Assert
             Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
+        }
+
+        [Test]
+        public void CreateSepaTransactionWithSequenceType()
+        {
+            // Arange
+            var payment = new Payment.Builder("SEPA", "John Doe", "89.216.124.9")
+                .WithIban("DE89370400440532013000")
+                .WithMandateID("123123")
+                .WithMandateDateOfSignature("12/23/2020")
+                .Build();
+
+            var customer = new Customer.Builder("John", "Doe", "john@doe.com", "DE", "89.216.124.9")
+                .WithAddress("Marko Bode Strasse")
+                .WithCity("Dortmund")
+                .WithZip("A2123")
+                .Build();
+
+            var transaction = new Transaction.Builder(customer, 500, "EUR", "89.216.124.9")
+                .WithPayment(payment)
+                .WithMerchantTransactionId("MyTransactionCode2")
+                .WithCreditorName("MyCreditorName345")
+                .WithCreditorID("LT07ZZZ7824811973")
+                .WithCustomDescriptor("This is my test of Transaction using full Payment body")
+                .WithSequenceType("FNAL")
+                .WithRedirectUrls("http://alternativepayments.com/message/success.html", "http://alternativepayments.com/message/failure.html")
+                .Build();
+
+            // Act
+            var result = _alternativePayments.TransactionService.Create(transaction);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Id, Is.Not.Empty);
         }
 
         [Test]
