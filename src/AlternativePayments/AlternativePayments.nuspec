@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AlternativePayments</id>
-    <version>1.1.0-preview</version>
+    <version>1.1.0</version>
     <title>Alternative Payments .Net SDK</title>
     <authors>UAB Alternative Payments</authors>
     <owners>UAB Alternative Payments</owners>
