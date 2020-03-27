@@ -2,7 +2,7 @@
 {
     internal static class Urls
     {
-        internal static string BaseUrl => "https://api.alternativepayments.com/api";
+        internal static string BaseUrl => "https://api.local/api";
         
         public static string Customers => "/customers";
 

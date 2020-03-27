@@ -26,9 +26,11 @@
 
         public string Mode { get; set; }
 
-        public bool IsRecurring { get; set; }
+        public bool? IsRecurring { get; set; }
 
         public string InitialTransactionId { get; set; }
+
+        public string SequenceType { get; set; }
 
         public string MerchantPassThruData { get; set; }
 
@@ -66,9 +68,11 @@
 
             public string Description { get; set; }
 
-            public bool IsRecurring { get; set; }
+            public bool? IsRecurring { get; set; }
 
             public string InitialTransactionId { get; set; }
+
+            public string SequenceType { get; set; }
 
             public string MerchantPassThruData { get; set; }
 
@@ -133,6 +137,12 @@
             public Builder WithInitialTransactionId(string initialTransactionId)
             {
                 InitialTransactionId = initialTransactionId;
+                return this;
+            }
+
+            public Builder WithSequenceType(string sequenceType)
+            {
+                SequenceType = sequenceType;
                 return this;
             }
 
@@ -205,6 +215,7 @@
             Description = builder.Description;
             IsRecurring = builder.IsRecurring;
             InitialTransactionId = builder.InitialTransactionId;
+            SequenceType = builder.SequenceType;
             MerchantPassThruData = builder.MerchantPassThruData;
             MerchantTransactionId = builder.MerchantTransactionId;
             RedirectUrls = builder.RedirectUrls;

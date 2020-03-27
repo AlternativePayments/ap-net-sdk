@@ -12,3 +12,6 @@ bin
 # Visual Studio folders
 .vs
 packages
+
+# JetBrains Rider folders
+.idea/
