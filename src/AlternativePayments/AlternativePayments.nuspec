@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>AlternativePayments</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>Alternative Payments .Net SDK</title>
     <authors>UAB Alternative Payments</authors>
     <owners>UAB Alternative Payments</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>http://www.alternativepayments.com/</projectUrl>
     <description>UAB Alternative Payments .Net SDK</description>
-    <releaseNotes>Support for specifying sequence type when creating SDD transaction.</releaseNotes>
-    <copyright>© 1999-2020 UAB Alternative Payments. All rights reserved.</copyright>
+    <releaseNotes>Support for creating hosted page subscriptions.</releaseNotes>
+    <copyright>© 1999-2021 UAB Alternative Payments. All rights reserved.</copyright>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
         <dependency id="Newtonsoft.Json" version="9.0.1" />

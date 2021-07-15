@@ -58,6 +58,8 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Filters\CommonFilter.cs" />
+    <Compile Include="Models\HostedPage\SubscriptionCustomer.cs" />
+    <Compile Include="Models\HostedPage\SepaPaymentInfo.cs" />
     <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\PhoneVerification.cs" />
@@ -65,12 +67,14 @@
     <Compile Include="Models\RedirectUrls.cs" />
     <Compile Include="Models\Refund.cs" />
     <Compile Include="Models\Subscription.cs" />
+    <Compile Include="Models\HostedPage\HostedSubscription.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionList.cs" />
     <Compile Include="Models\Void.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Customers\CustomerService.cs" />
+    <Compile Include="Services\HostedSubscriptions\HostedSubscriptionService.cs" />
     <Compile Include="Services\Payments\PaymentService.cs" />
     <Compile Include="Services\PhoneVerification\PhoneVerificationService.cs" />
     <Compile Include="Services\Plans\PlanService.cs" />

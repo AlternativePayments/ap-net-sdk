@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using AlternativePayments.Infrastructure.Constants;
 using System.Net;
+using AlternativePayments.Services.HostedSubscriptions;
 
 namespace AlternativePayments
 {
@@ -18,6 +19,7 @@ namespace AlternativePayments
         private readonly Lazy<RefundService> _refundService;
         private readonly Lazy<VoidService> _voidService;
         private readonly Lazy<PhoneVerificationService> _phoneVerificationService;
+        private readonly Lazy<HostedSubscriptionService> _hostedSubscriptionService;
 
         public AlternativePaymentsClient(string apiKey, string baseUrl = null)
         {
@@ -45,6 +47,7 @@ namespace AlternativePayments
             _refundService = new Lazy<RefundService>(() => new RefundService(httpClient, apiUrl));
             _voidService = new Lazy<VoidService>(() => new VoidService(httpClient, apiUrl));
             _phoneVerificationService = new Lazy<PhoneVerificationService>(() => new PhoneVerificationService(httpClient, apiUrl));
+            _hostedSubscriptionService = new Lazy<HostedSubscriptionService>(() => new HostedSubscriptionService(httpClient, apiUrl));
         }
 
         public CustomerService CustomerService => _customerService.Value;
@@ -62,5 +65,7 @@ namespace AlternativePayments
         public VoidService VoidService => _voidService.Value;
 
         public PhoneVerificationService PhoneVerificationService => _phoneVerificationService.Value;
+
+        public HostedSubscriptionService HostedSubscriptionService => _hostedSubscriptionService.Value;
     }
 }
