@@ -24,6 +24,8 @@ namespace AlternativePayments
         public string MandateID { get; set; }
 
         public string MandateDateOfSignature { get; set; }
+        
+        public string PsuId { get; set; }
 
         public sealed class Builder
         {
@@ -44,6 +46,8 @@ namespace AlternativePayments
             public string MandateID { get; set; }
 
             public string MandateDateOfSignature { get; set; }
+            
+            public string PsuId { get; set; }
 
             public Builder(string paymentOption, string holder, string ipAddress)
             {
@@ -93,6 +97,12 @@ namespace AlternativePayments
                 MandateDateOfSignature = mandateDateOfSignature.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 return this;
             }
+            
+            public Builder WithPsuId(string psuId)
+            {
+                PsuId = psuId;
+                return this;
+            }
 
             public Payment Build()
             {
@@ -111,6 +121,7 @@ namespace AlternativePayments
             IpAddress = builder.IpAddress;
             MandateID = builder.MandateID;
             MandateDateOfSignature = builder.MandateDateOfSignature;
+            PsuId = builder.PsuId;
         }
     }
 }

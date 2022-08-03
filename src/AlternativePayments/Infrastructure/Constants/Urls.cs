@@ -18,5 +18,7 @@
         public static string SubscriptionsHosted => "/subscriptions/hosted";
 
         public static string PhoneVerification => "/phoneverification";
+        
+        public static string AcquirerSupportedInstitutionsByCountries => "/acquirersupportedinstitutions/countries";
     }
 }

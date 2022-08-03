@@ -41,5 +41,11 @@ namespace AlternativePayments
         {
             return CreateResource(Urls.Transactions, transaction);
         }
+        
+        public TransactionAuthorization Authorize(string transactionId,TransactionAuthorizationCredential credential)
+        {
+            var url = $"{Urls.Transactions}/{transactionId}/authorize";
+            return CreateResource<TransactionAuthorization>(url, credential);
+        }
     }
 }

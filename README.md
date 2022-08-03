@@ -8,7 +8,7 @@ PM> Install-Package AlternativePayments
 ```
 
 ## Developer Documentation
-[Official Alternative Payments RESTful API Reference](http://www.alternativepayments.com/developers/API/)
+[Official Alternative Payments RESTful API Reference](https://www.alternativepayments.com/developers/API/)
 
 ## Usage
 

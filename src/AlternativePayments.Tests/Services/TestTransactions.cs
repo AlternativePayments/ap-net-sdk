@@ -367,6 +367,7 @@ namespace AlternativePayments.Tests.Services
             Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
         }
 
+        [Test]
         public void CreateSepaTransactionWithPaymentObjectCustomerObjectAndPin()
         {
             // Arange
@@ -392,6 +393,30 @@ namespace AlternativePayments.Tests.Services
 
             // Assert
             Assert.That(result.IpAddress, Is.EqualTo("89.216.124.9"));
+        }
+
+        [Test]
+        public void AuthorizeTransaction()
+        {
+            //Arrange
+            var payment = new Payment.Builder("DirectPayMax", "John Doe", "89.216.124.9")
+                .WithIban("DE33500105175638584187")
+                .Build();
+
+            var customer = new Customer.Builder("John", "Doe", "john@doe.com", "FR", "89.216.124.9")
+                .Build();
+
+            var transaction = new Transaction.Builder(customer, 500, "EUR", "89.216.124.9")
+                .WithPayment(payment)
+                .WithRedirectUrls("https://display-parameters.com/","https://display-parameters.com/")
+                .Build();
+            
+            //Act
+            var transactionResult = _alternativePayments.TransactionService.Create(transaction);
+            var authorizationResult = _alternativePayments.TransactionService.Authorize(transactionResult.Id, new TransactionAuthorizationCredential());
+
+            //Assert
+            Assert.That(authorizationResult.TransactionStatus, Is.EqualTo("Pending"));
         }
     }
 }
