@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TestAcquirerSupportedInstitutions.cs" />
     <Compile Include="Services\TestCustomers.cs" />
     <Compile Include="Services\TestHostedSubscriptions.cs" />
     <Compile Include="Services\TestPayments.cs" />

@@ -20,6 +20,7 @@ namespace AlternativePayments
         private readonly Lazy<VoidService> _voidService;
         private readonly Lazy<PhoneVerificationService> _phoneVerificationService;
         private readonly Lazy<HostedSubscriptionService> _hostedSubscriptionService;
+        private readonly Lazy<AcquirerSupportedInstitutionsService> _acquirerSupportedInstitutionsService;
 
         public AlternativePaymentsClient(string apiKey, string baseUrl = null)
         {
@@ -48,6 +49,7 @@ namespace AlternativePayments
             _voidService = new Lazy<VoidService>(() => new VoidService(httpClient, apiUrl));
             _phoneVerificationService = new Lazy<PhoneVerificationService>(() => new PhoneVerificationService(httpClient, apiUrl));
             _hostedSubscriptionService = new Lazy<HostedSubscriptionService>(() => new HostedSubscriptionService(httpClient, apiUrl));
+            _acquirerSupportedInstitutionsService = new Lazy<AcquirerSupportedInstitutionsService>(() => new AcquirerSupportedInstitutionsService(httpClient, apiUrl));
         }
 
         public CustomerService CustomerService => _customerService.Value;
@@ -67,5 +69,7 @@ namespace AlternativePayments
         public PhoneVerificationService PhoneVerificationService => _phoneVerificationService.Value;
 
         public HostedSubscriptionService HostedSubscriptionService => _hostedSubscriptionService.Value;
+
+        public AcquirerSupportedInstitutionsService AcquirerSupportedInstitutionsService => _acquirerSupportedInstitutionsService.Value;
     }
 }

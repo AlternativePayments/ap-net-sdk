@@ -34,6 +34,13 @@ namespace AlternativePayments
             var result = SendPostRequest(url, JsonConvert.SerializeObject(model, settings));
             return JsonConvert.DeserializeObject<T>(result);
         }
+        
+        protected TCustom CreateResource<TCustom>(string url, object model)
+        {
+            var settings = new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore};
+            var result = SendPostRequest(url, JsonConvert.SerializeObject(model, settings));
+            return JsonConvert.DeserializeObject<TCustom>(result);
+        }
 
         protected T UpdateResource(string url, object model)
         {
